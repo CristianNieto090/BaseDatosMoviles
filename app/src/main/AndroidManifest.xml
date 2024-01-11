@@ -93,6 +93,42 @@
             //<category android:name="android.intent.category.LAUNCHER" />
             //</intent-filter>
         </activity>
+        <activity
+            android:name=".Delete_centro"
+            android:exported="true">
+            //<intent-filter>
+            //<action android:name="android.intent.action.MAIN" />
+
+            //<category android:name="android.intent.category.LAUNCHER" />
+            //</intent-filter>
+        </activity>
+        <activity
+            android:name=".Delete_oferta"
+            android:exported="true">
+            //<intent-filter>
+            //<action android:name="android.intent.action.MAIN" />
+
+            //<category android:name="android.intent.category.LAUNCHER" />
+            //</intent-filter>
+        </activity>
+        <activity
+            android:name=".Delete_producto"
+            android:exported="true">
+            //<intent-filter>
+            //<action android:name="android.intent.action.MAIN" />
+
+            //<category android:name="android.intent.category.LAUNCHER" />
+            //</intent-filter>
+        </activity>
+        <activity
+            android:name=".Delete_ubicacion"
+            android:exported="true">
+            //<intent-filter>
+            //<action android:name="android.intent.action.MAIN" />
+
+            //<category android:name="android.intent.category.LAUNCHER" />
+            //</intent-filter>
+        </activity>
     </application>
 
 </manifest>
