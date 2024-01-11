@@ -17,7 +17,6 @@ public class Add_producto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_producto);
 
-        // Initialize EditText fields
         nombreEditText = findViewById(R.id.AddProductoNombre);
         precioEditText = findViewById(R.id.AddProductoPrecio);
         marcaEditText = findViewById(R.id.AddProductoMarca);
