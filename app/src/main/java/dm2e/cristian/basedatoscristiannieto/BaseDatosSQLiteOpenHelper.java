@@ -71,5 +71,15 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
         db.insert("centro", null, values);
         db.close();
     }
+
+    public void insertProducto(String nombre, double precio, String marca) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("nombre", nombre);
+        values.put("precio", precio);
+        values.put("marca", marca);
+        db.insert("producto", null, values);
+        db.close();
+    }
 }
 
