@@ -13,23 +13,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       /* //Abrimos la base de datos 'DBUsuarios' en modo escritura
-        CentroSQLiteOpenHelper usdbh = new CentroSQLiteOpenHelper(this, "DBUsuarios", null, 1);
-        SQLiteDatabase db = usdbh.getWritableDatabase();
+        //Abrimos la base de datos 'DBUsuarios' en modo escritura
+        BaseDatosSQLiteOpenHelper baseDatos = new BaseDatosSQLiteOpenHelper(this,  null);
+        SQLiteDatabase db = baseDatos.getWritableDatabase();
         //Si hemos abierto correctamente la base de datos
         if(db != null) {
-            //Insertamos 5 usuarios de ejemplo
-            for(int i=1; i<=5; i++) {
-                //Generamos los datos
-                int telefono = 11111111+i;
-                String nombre = "Usuario" + i;
-                //Insertamos los datos en la tabla Usuarios
-                db.execSQL("INSERT INTO Usuarios (nombre, telefono) " +
-                        "VALUES('" + nombre +"', " + telefono + " )");
-            }
-            //Cerramos la base de datos
-            db.close();
-        }*/
+            //Inserto 1 ejemplo por tabla
+            db.execSQL("INSERT INTO producto (nombre, precio, marca) " +
+                    "VALUES('Cerveza', 3, 'Mahou' )");
+            db.execSQL("INSERT INTO ubicacion (calle, ciudad, codigoPostal) " +
+                    "VALUES('Padre Claret, 1', 'Madrid', 28002 )");
+            db.execSQL("INSERT INTO oferta (nombre, descripcion) " +
+                    "VALUES('CervecitaRica', '3x2 en cervezas Mahou' )");
+            db.execSQL("INSERT INTO centro (nombre, ubicacion, max_aforo) " +
+                    "VALUES('Entrecañas', 'Padre Claret, 1', 500 )");
+        }
+        db.close();
     }
 
     public void onBorrar(View view) {
