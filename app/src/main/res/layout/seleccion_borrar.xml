@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:text="Bases de datos - Seleccion borrar"
+        android:textSize="25dp"
+        android:textAlignment="center"
+        android:background="@color/blue"
+        android:textColor="@color/white"
+        android:gravity="center_horizontal" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:text="¿De que tabla quieres borrar?"
+        android:textSize="25dp"
+        android:textAlignment="center"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal" />
+    <Button
+        android:id="@+id/Atras"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#9b9b9b"
+        android:text="Atras"
+        android:onClick="onAtrasBorrar"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="100dp"/>
+        <Button
+            android:id="@+id/Centro"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:text="Centro"
+            android:onClick="onCentroBorrar"/>
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+        <Button
+            android:id="@+id/Ubicacion"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:text="Ubicacion"
+            android:onClick="onUbicacionBorrar"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="70dp"
+        android:layout_height="40dp"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="40dp"/>
+
+        <Button
+            android:id="@+id/Producto"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:text="Producto"
+            android:onClick="onProductoBorrar"/>
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+        <Button
+            android:id="@+id/Oferta"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:onClick="onOfertaBorrar"
+            android:text="Oferta" />
+    </LinearLayout>
+
+</LinearLayout>
