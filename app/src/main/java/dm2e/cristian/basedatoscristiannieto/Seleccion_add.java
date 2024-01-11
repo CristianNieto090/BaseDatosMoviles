@@ -27,4 +27,8 @@ public class Seleccion_add extends AppCompatActivity {
         Intent i = new Intent(this, Add_ubicacion.class);
         startActivity(i);
     }
+    public void onOfertaAdd(View view) {
+        Intent i = new Intent(this, Add_oferta.class);
+        startActivity(i);
+    }
 }

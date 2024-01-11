@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="45dp"
-        android:text="Bases de datos - Añadir Ubicacion"
+        android:text="Bases de datos - Añadir Oferta"
         android:textSize="25dp"
         android:textAlignment="center"
         android:background="@color/blue"
@@ -31,7 +31,7 @@
         android:backgroundTint="#9b9b9b"
         android:text="Atras"
         android:textSize="15dp"
-        android:onClick="onAtrasAddUbicacion"/>
+        android:onClick="onAtrasAddOferta"/>
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -40,20 +40,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="45dp"
-            android:text="Calle:"
+            android:text="Nombre Oferta:"
             android:textSize="20dp"
             android:textAlignment="center"
             android:background="@color/white"
             android:textColor="@color/black"
             android:gravity="center_horizontal" />
         <EditText
-            android:id="@+id/AddUbicacionCalle"
+            android:id="@+id/AddOfertaNombre"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Ingresa la calle aquí"/>
+            android:hint="Ingresa el nombre aquí"/>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -62,40 +63,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="45dp"
-            android:text="Ciudad:"
+            android:text="Descripcion:"
             android:textSize="20dp"
             android:textAlignment="center"
             android:background="@color/white"
             android:textColor="@color/black"
             android:gravity="center_horizontal" />
         <EditText
-            android:id="@+id/AddUbicacionCiudad"
+            android:id="@+id/AddOfertaDescripcion"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Ingresa nombre de la ciudad aquí"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:text="CP:"
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:background="@color/white"
-            android:textColor="@color/black"
-            android:gravity="center_horizontal" />
-        <EditText
-            android:id="@+id/AddUbicacionCP"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Ingresa el codigo postal"/>
+            android:hint="Ingresa la descripcion"/>
 
     </LinearLayout>
 
@@ -105,6 +84,6 @@
         android:backgroundTint="#9b9b9b"
         android:text="Añadir"
         android:textSize="15dp"
-        android:onClick="onUbicacionA"/>
+        android:onClick="onOfertaA"/>
 
     </LinearLayout>
