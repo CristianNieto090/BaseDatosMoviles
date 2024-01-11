@@ -1,5 +1,6 @@
 package dm2e.cristian.basedatoscristiannieto;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -59,6 +60,16 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int versionAnterior, int versionNueva) {
         db.execSQL("DROP TABLE IF EXISTS Usuarios");
         db.execSQL(sqlCreate);
+    }
+
+    public void insertCentro(String nombre, int aforo, String ubicacion) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("nombre", nombre);
+        values.put("max_aforo", aforo);
+        values.put("ubicacion", ubicacion);
+        db.insert("centro", null, values);
+        db.close();
     }
 }
 
