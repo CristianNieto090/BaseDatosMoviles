@@ -105,6 +105,6 @@
         android:backgroundTint="#9b9b9b"
         android:text="Añadir"
         android:textSize="15dp"
-        android:onClick="onUbicacionA"/>
+        android:onClick="onUbicacionAdd"/>
 
     </LinearLayout>

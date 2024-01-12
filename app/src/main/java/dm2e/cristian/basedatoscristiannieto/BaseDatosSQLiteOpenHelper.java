@@ -62,6 +62,8 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
         db.execSQL(sqlCreate);
     }
 
+
+    //Métodos para insertar
     public void insertCentro(String nombre, int aforo, String ubicacion) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -100,5 +102,15 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
         db.insert("ubicacion", null, values);
         db.close();
     }
+
+    //Métodos para borrar
+    public boolean deleteCentro(int centroId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int rowsAffected = db.delete("centro", "idCentro" + "=?", new String[]{String.valueOf(centroId)});
+        db.close();
+
+        return rowsAffected > 0;
+    }
+
 }
 

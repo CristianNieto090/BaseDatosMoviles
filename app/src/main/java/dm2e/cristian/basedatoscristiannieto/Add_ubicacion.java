@@ -22,7 +22,7 @@ public class Add_ubicacion extends AppCompatActivity {
         cpEditText = findViewById(R.id.AddUbicacionCP);
     }
 
-    public void onUbicacionA(View view) {
+    public void onUbicacionAdd(View view) {
         String calle = calleEditText.getText().toString();
         String ciudad = ciudadEditText.getText().toString();
         int cp = Integer.parseInt(cpEditText.getText().toString());
