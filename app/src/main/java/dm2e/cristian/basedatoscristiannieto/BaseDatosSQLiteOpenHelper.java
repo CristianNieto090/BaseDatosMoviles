@@ -2,9 +2,12 @@ package dm2e.cristian.basedatoscristiannieto;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.TextView;
+
 public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
     private static final String BASEDATOS = "Ocio";
     private static final int VERSION = 1;
@@ -184,5 +187,158 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
 
         return rowsAffected > 0;
     }
+    // métodos select
+    public TextView mostrarCentro(){
+        TextView tvCentro = null;
+        SQLiteDatabase db =this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM centro", null);
+
+        if (cursor.moveToFirst()) {
+            StringBuilder data = new StringBuilder();
+            do {
+                int idIndex = cursor.getColumnIndex("id");
+                int nombreIndex = cursor.getColumnIndex("nombre");
+
+                int centroId = cursor.getInt(idIndex);
+                String centroNombre = cursor.getString(nombreIndex);
+
+                data.append("Centro ID: ").append(centroId).append(", Nombre: ").append(centroNombre).append("\n");
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+            db.close();
+
+            tvCentro.setText(data.toString());
+        } else {
+            tvCentro.setText("No hay datos de Centro.");
+        }
+
+        return tvCentro;
+    }
+    public TextView mostrarUbicacion() {
+        TextView tvUbicacion = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM ubicacion", null);
+
+        if (cursor.moveToFirst()) {
+            StringBuilder data = new StringBuilder();
+            do {
+                int idIndex = cursor.getColumnIndex("id");
+                int nameIndex = cursor.getColumnIndex("nombre");
+
+                int ubicacionId = cursor.getInt(idIndex);
+                String ubicacionNombre = cursor.getString(nameIndex);
+
+                data.append("Ubicacion ID: ").append(ubicacionId).append(", Nombre: ").append(ubicacionNombre).append("\n");
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+            db.close();
+
+            tvUbicacion.setText(data.toString());
+        } else {
+            tvUbicacion.setText("No hay datos de Ubicacion.");
+        }
+        return tvUbicacion;
+    }
+    public TextView mostrarProducto () {
+        TextView tvProducto = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM producto", null);
+
+        if (cursor.moveToFirst()) {
+            StringBuilder data = new StringBuilder();
+            do {
+                int idIndex = cursor.getColumnIndex("id");
+                int nameIndex = cursor.getColumnIndex("nombre");
+                int descriptionIndex = cursor.getColumnIndex("descripcion");
+
+                int productoId = cursor.getInt(idIndex);
+                String productoNombre = cursor.getString(nameIndex);
+                String productoDescripcion = cursor.getString(descriptionIndex);
+
+                data.append("Producto ID: ").append(productoId)
+                        .append(", Nombre: ").append(productoNombre)
+                        .append(", Descripcion: ").append(productoDescripcion).append("\n");
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+            db.close();
+
+            tvProducto.setText(data.toString());
+        } else {
+            tvProducto.setText("No hay datos disponibles de la tabla Producto.");
+        }
+        return tvProducto;
+    }
+    public TextView mostrarOferta() {
+        TextView tvOferta = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Oferta", null);
+
+        if (cursor.moveToFirst()) {
+            StringBuilder data = new StringBuilder();
+            do {
+                int idIndex = cursor.getColumnIndex("id");
+                int descriptionIndex = cursor.getColumnIndex("descripcion");
+                int priceIndex = cursor.getColumnIndex("precio");
+
+                int ofertaId = cursor.getInt(idIndex);
+                String ofertaDescripcion = cursor.getString(descriptionIndex);
+                double ofertaPrecio = cursor.getDouble(priceIndex);
+
+                data.append("Oferta ID: ").append(ofertaId)
+                        .append(", Descripcion: ").append(ofertaDescripcion)
+                        .append(", Precio: ").append(ofertaPrecio).append("\n");
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+            db.close();
+
+            tvOferta.setText(data.toString());
+        } else {
+            tvOferta.setText("No hay datos disponibles de la tabla Oferta");
+        }
+        return tvOferta;
+    }
+    public TextView mostrarCentroUbicacionJoin () {
+
+        TextView tvJoin = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT Centro.nombre, Ubicacion.calle FROM Centro INNER JOIN Ubicacion ON Centro.ubicacion = Ubicacion.calle";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            StringBuilder datos = new StringBuilder();
+            do {
+
+                int centroNameIndex = cursor.getColumnIndex("Centro.nombre");
+
+                int ubicacionDetailsIndex = cursor.getColumnIndex("Ubicacion.calle");
+                String centroName = cursor.getString(centroNameIndex);
+
+                String ubicacionCalle = cursor.getString(ubicacionDetailsIndex);
+                datos.append(", Nombre centro: ").append(centroName)
+                        .append(", Ubicación: ").append(ubicacionCalle).append("\n");
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+            db.close();
+
+            tvJoin.setText(datos.toString());
+        } else {
+            tvJoin.setText("No hay datos de estas tablas");
+        }
+        return tvJoin;
+    }
+
+
+
+
 }
 
