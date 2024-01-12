@@ -29,7 +29,7 @@ public class Seleccion_modificar extends AppCompatActivity {
         startActivity(i);
     }
     public void onModificarDescripcion(View view) {
-        Intent i = new Intent(this, Update_desp_oferta.class);
+        Intent i = new Intent(this, Update_desc_oferta.class);
         startActivity(i);
     }
 }

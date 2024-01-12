@@ -130,7 +130,7 @@
             //</intent-filter>
         </activity>
         <activity
-            android:name=".Update_desp_oferta"
+            android:name=".Update_desc_oferta"
             android:exported="true">
             //<intent-filter>
             //<action android:name="android.intent.action.MAIN" />

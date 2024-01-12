@@ -94,8 +94,8 @@
             android:id="@+id/AddCentroUbicacion"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Ingresa el numero ubicacion"/>
+            android:inputType="text"
+            android:hint="Ingresa la ubicacion de la calle"/>
 
     </LinearLayout>
 
@@ -105,6 +105,6 @@
         android:backgroundTint="#9b9b9b"
         android:text="Añadir"
         android:textSize="15dp"
-        android:onClick="onCentroA"/>
+        android:onClick="onCentroAdd"/>
 
     </LinearLayout>

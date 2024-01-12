@@ -3,6 +3,7 @@ package dm2e.cristian.basedatoscristiannieto;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,6 +28,9 @@ public class Add_centro extends AppCompatActivity {
 
         BaseDatosSQLiteOpenHelper dbHelper = new BaseDatosSQLiteOpenHelper(this, null);
         dbHelper.insertCentro(nombre,aforo,ubicacion);
+
+        Toast.makeText(this, "Centro añadido correctamente", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     public void onAtrasAddCentro(View view) {
