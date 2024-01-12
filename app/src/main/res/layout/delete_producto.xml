@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="45dp"
-        android:text="Pon la id del producto que desees borrar"
+        android:text="Pon el id del producto que desees borrar"
         android:textSize="20dp"
         android:textAlignment="center"
         android:background="@color/white"
@@ -40,7 +40,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="45dp"
-            android:text="Id de la producto:"
+            android:text="Id del producto:"
             android:textSize="20dp"
             android:textAlignment="center"
             android:background="@color/white"
@@ -51,7 +51,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="Ingresa la ID aquí"/>
+            android:hint="Ingresa el ID aquí"/>
 
     </LinearLayout>
 

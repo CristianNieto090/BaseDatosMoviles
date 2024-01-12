@@ -15,11 +15,10 @@ public class Delete_centro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delete_centro);
 
-        // Initialize EditText field
         centroIdEditText = findViewById(R.id.DeleteCentro);
     }
 
-    public void onCentroD(View view) {
+    public void onCentroDelete(View view) {
         String centroIdStr = centroIdEditText.getText().toString();
 
         if (centroIdStr.isEmpty()) {

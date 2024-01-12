@@ -112,5 +112,28 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
         return rowsAffected > 0;
     }
 
+    public boolean deleteOferta(int ofertaId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int rowsAffected = db.delete("oferta", "ofertaId" + "=?", new String[]{String.valueOf(ofertaId)});
+        db.close();
+
+        return rowsAffected > 0;
+    }
+
+    public boolean deleteProducto(int productoId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int rowsAffected = db.delete("producto", "productoId" + "=?", new String[]{String.valueOf(productoId)});
+        db.close();
+
+        return rowsAffected > 0;
+    }
+
+    public boolean deleteUbicacion(int ubicacionId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int rowsAffected = db.delete("ubicacion", "ubicacionId" + "=?", new String[]{String.valueOf(ubicacionId)});
+        db.close();
+
+        return rowsAffected > 0;
+    }
 }
 
