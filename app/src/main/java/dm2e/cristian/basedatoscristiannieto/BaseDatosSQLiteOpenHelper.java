@@ -135,5 +135,54 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
 
         return rowsAffected > 0;
     }
+
+    //métodos update
+    public boolean updateOfertaDescripcion(int ofertaId, String nuevaDescripcion) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("descripcion", nuevaDescripcion);
+
+        int rowsAffected = db.update("oferta", values, "descripcion" + "=?", new String[]{String.valueOf(ofertaId)});
+        db.close();
+
+        return rowsAffected > 0;
+    }
+
+    public boolean updateProductoMarca(int productId, String nuevoMarca) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("marca", nuevoMarca);
+
+        int rowsAffected = db.update("producto", values, "marca" + "=?", new String[]{String.valueOf(productId)});
+        db.close();
+
+        return rowsAffected > 0;
+    }
+
+    public boolean updateCentroNombre(int centroId, String nuevoNombre) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("centro", nuevoNombre);
+
+        int rowsAffected = db.update("centro", values, "nombre" + "=?", new String[]{String.valueOf(centroId)});
+        db.close();
+
+        return rowsAffected > 0;
+    }
+
+    public boolean updateProductPrecio(int productId, double nuevoPrecio) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("producto", nuevoPrecio);
+
+        int rowsAffected = db.update("producto", values, "productoId" + "=?", new String[]{String.valueOf(productId)});
+        db.close();
+
+        return rowsAffected > 0;
+    }
 }
 

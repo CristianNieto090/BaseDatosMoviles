@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Rellena el campos con los datos correspondentes"
+        android:text="Rellena el campos con los datos correspondientes"
         android:textSize="20dp"
         android:textAlignment="center"
         android:background="@color/white"
