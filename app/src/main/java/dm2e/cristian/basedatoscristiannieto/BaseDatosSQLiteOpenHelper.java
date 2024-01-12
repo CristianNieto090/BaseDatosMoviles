@@ -188,33 +188,36 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
         return rowsAffected > 0;
     }
     // métodos select
-    public TextView mostrarCentro(){
+    public String mostrarCentro(){
         TextView tvCentro = null;
         SQLiteDatabase db =this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM centro", null);
+        String[] campos = new String[]{"idCentro", "nombre","ubicacion","max_aforo"};
+        Cursor cursor = db.query("Centro", campos, null, null, null,
+                null, null);
+        //Cursor cursor = db.rawQuery("SELECT * FROM centro", null);
+        StringBuilder data = new StringBuilder();
 
         if (cursor.moveToFirst()) {
-            StringBuilder data = new StringBuilder();
             do {
-                int idIndex = cursor.getColumnIndex("id");
-                int nombreIndex = cursor.getColumnIndex("nombre");
+                int idIndex = cursor.getInt(0);
+                String nombreIndex = cursor.getString(1);
+                String ubicacionIndex = cursor.getString(2);
+                int aforoIndex = cursor.getInt(3);
 
-                int centroId = cursor.getInt(idIndex);
-                String centroNombre = cursor.getString(nombreIndex);
 
-                data.append("Centro ID: ").append(centroId).append(", Nombre: ").append(centroNombre).append("\n");
+                data.append("Centro ID: ").append(idIndex).append(", Nombre: ").append(nombreIndex).append(", ubicacion: ").append(ubicacionIndex).append(", aforo: ").append(aforoIndex).append("\n");
 
             } while (cursor.moveToNext());
 
             cursor.close();
             db.close();
 
-            tvCentro.setText(data.toString());
+
         } else {
             tvCentro.setText("No hay datos de Centro.");
         }
 
-        return tvCentro;
+        return data.toString();
     }
     public TextView mostrarUbicacion() {
         TextView tvUbicacion = null;

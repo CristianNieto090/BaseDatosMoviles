@@ -22,7 +22,8 @@ public class Seleccion_mostrar extends AppCompatActivity {
 
     public void onCentroMostrar(View view) {
         BaseDatosSQLiteOpenHelper db = new BaseDatosSQLiteOpenHelper(this, null);
-        textView = db.mostrarCentro();
+        String datos = db.mostrarCentro();
+        textView.setText(datos);
     }
 
     public void onUbicacionMostrar(View view) {

@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Abrimos la base de datos 'DBUsuarios' en modo escritura
+        //Abrimos la base de datos en modo escritura
         BaseDatosSQLiteOpenHelper baseDatos = new BaseDatosSQLiteOpenHelper(this,  null);
         SQLiteDatabase db = baseDatos.getWritableDatabase();
         //Si hemos abierto correctamente la base de datos
