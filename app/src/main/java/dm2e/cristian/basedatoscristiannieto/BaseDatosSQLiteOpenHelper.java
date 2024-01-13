@@ -188,158 +188,243 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
         return rowsAffected > 0;
     }
     // métodos select
-    public String mostrarCentro(){
-        TextView tvCentro = null;
-        SQLiteDatabase db =this.getReadableDatabase();
-        String[] campos = new String[]{"idCentro", "nombre","ubicacion","max_aforo"};
-        Cursor cursor = db.query("Centro", campos, null, null, null,
-                null, null);
-        //Cursor cursor = db.rawQuery("SELECT * FROM centro", null);
-        StringBuilder data = new StringBuilder();
+    public String mostrarCentro() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] campos = new String[]{"idCentro", "nombre", "max_aforo"};
+        Cursor cursor = db.query("Centro", campos, null, null, null, null, null);
+        String[][] datos = new String[cursor.getCount() + 1][3];
+
+        // Cabecera de la tabla
+        datos[0][0] = "Centro ID";
+        datos[0][1] = "Nombre";
+        datos[0][2] = "Aforo";
+
+        int rowIndex = 1;
 
         if (cursor.moveToFirst()) {
             do {
                 int idIndex = cursor.getInt(0);
                 String nombreIndex = cursor.getString(1);
-                String ubicacionIndex = cursor.getString(2);
-                int aforoIndex = cursor.getInt(3);
+                int aforoIndex = cursor.getInt(2);
 
+                // Llenar datos en la matriz
+                datos[rowIndex][0] = String.valueOf(idIndex);
+                datos[rowIndex][1] = nombreIndex;
+                datos[rowIndex][2] = String.valueOf(aforoIndex);
 
-                data.append("Centro ID: ").append(idIndex).append(", Nombre: ").append(nombreIndex).append(", ubicacion: ").append(ubicacionIndex).append(", aforo: ").append(aforoIndex).append("\n");
-
+                rowIndex++;
             } while (cursor.moveToNext());
-
-            cursor.close();
-            db.close();
-
-
-        } else {
-            tvCentro.setText("No hay datos de Centro.");
         }
 
-        return data.toString();
+        cursor.close();
+        db.close();
+
+        // Llamar a la función construirTablaSQL con los datos
+        return construirTablaSQL(datos);
     }
-    public TextView mostrarUbicacion() {
-        TextView tvUbicacion = null;
+    public String mostrarUbicacion() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM ubicacion", null);
+
+        String[] campos = new String[]{"idUbicacion", "calle", "ciudad","codigoPostal"};
+        Cursor cursor = db.query("ubicacion", campos, null, null, null, null, null);
+        String[][] datos = new String[cursor.getCount() + 1][4];
+
+        // Cabecera de la tabla
+        datos[0][0] = "iD Ubicacion";
+        datos[0][1] = "Calle";
+        datos[0][2] = "Ciudad";
+        datos[0][3]= "codigoPostal";
+
+        int rowIndex = 1;
 
         if (cursor.moveToFirst()) {
-            StringBuilder data = new StringBuilder();
             do {
-                int idIndex = cursor.getColumnIndex("id");
-                int nameIndex = cursor.getColumnIndex("nombre");
+                int idIndex = cursor.getInt(0);
+                String calleIndex = cursor.getString(1);
+                String ciudadIndex = cursor.getString(2);
+                int codigoPostalIndex = cursor.getInt(3);
 
-                int ubicacionId = cursor.getInt(idIndex);
-                String ubicacionNombre = cursor.getString(nameIndex);
+                // Llenar datos en la matriz
+                datos[rowIndex][0] = String.valueOf(idIndex);
+                datos[rowIndex][1] = calleIndex;
+                datos[rowIndex][2] = ciudadIndex;
+                datos[rowIndex][3] = String.valueOf(codigoPostalIndex);
 
-                data.append("Ubicacion ID: ").append(ubicacionId).append(", Nombre: ").append(ubicacionNombre).append("\n");
-
+                rowIndex++;
             } while (cursor.moveToNext());
-
-            cursor.close();
-            db.close();
-
-            tvUbicacion.setText(data.toString());
-        } else {
-            tvUbicacion.setText("No hay datos de Ubicacion.");
         }
-        return tvUbicacion;
+
+        cursor.close();
+        db.close();
+
+        // Llamar a la función construirTablaSQL con los datos
+        return construirTablaSQL(datos);
     }
-    public TextView mostrarProducto () {
-        TextView tvProducto = null;
+    public String mostrarProducto () {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM producto", null);
+
+        String[] campos = new String[]{"idProducto", "nombre", "precio","marca"};
+        Cursor cursor = db.query("producto", campos, null, null, null, null, null);
+        String[][] datos = new String[cursor.getCount() + 1][4];
+
+        // Cabecera de la tabla
+        datos[0][0] = "ID Producto";
+        datos[0][1] = "Nombre";
+        datos[0][2] = "Precio";
+        datos[0][3]= "Marca";
+
+        int rowIndex = 1;
 
         if (cursor.moveToFirst()) {
-            StringBuilder data = new StringBuilder();
             do {
-                int idIndex = cursor.getColumnIndex("id");
-                int nameIndex = cursor.getColumnIndex("nombre");
-                int descriptionIndex = cursor.getColumnIndex("descripcion");
+                int idIndex = cursor.getInt(0);
+                String nombreIndex = cursor.getString(1);
+                double precioIndex = cursor.getDouble(2);
+                String marcaPostalIndex = cursor.getString(3);
 
-                int productoId = cursor.getInt(idIndex);
-                String productoNombre = cursor.getString(nameIndex);
-                String productoDescripcion = cursor.getString(descriptionIndex);
+                // Llenar datos en la matriz
+                datos[rowIndex][0] = String.valueOf(idIndex);
+                datos[rowIndex][1] = nombreIndex;
+                datos[rowIndex][2] = String.valueOf(precioIndex);
+                datos[rowIndex][3] = marcaPostalIndex;
 
-                data.append("Producto ID: ").append(productoId)
-                        .append(", Nombre: ").append(productoNombre)
-                        .append(", Descripcion: ").append(productoDescripcion).append("\n");
-
+                rowIndex++;
             } while (cursor.moveToNext());
-
-            cursor.close();
-            db.close();
-
-            tvProducto.setText(data.toString());
-        } else {
-            tvProducto.setText("No hay datos disponibles de la tabla Producto.");
         }
-        return tvProducto;
+
+        cursor.close();
+        db.close();
+
+        // Llamar a la función construirTablaSQL con los datos
+        return construirTablaSQL(datos);
     }
-    public TextView mostrarOferta() {
-        TextView tvOferta = null;
+    public String mostrarOferta() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Oferta", null);
+
+        String[] campos = new String[]{"idOferta", "nombre", "descripcion"};
+        Cursor cursor = db.query("oferta", campos, null, null, null, null, null);
+        String[][] datos = new String[cursor.getCount() + 1][3];
+
+        // Cabecera de la tabla
+        datos[0][0] = "ID Oferta";
+        datos[0][1] = "Nombre";
+        datos[0][2] = "Descripcion";
+
+
+        int rowIndex = 1;
 
         if (cursor.moveToFirst()) {
-            StringBuilder data = new StringBuilder();
             do {
-                int idIndex = cursor.getColumnIndex("id");
-                int descriptionIndex = cursor.getColumnIndex("descripcion");
-                int priceIndex = cursor.getColumnIndex("precio");
+                int idIndex = cursor.getInt(0);
+                String nombreIndex = cursor.getString(1);
+                String descripcionIndex = cursor.getString(2);
 
-                int ofertaId = cursor.getInt(idIndex);
-                String ofertaDescripcion = cursor.getString(descriptionIndex);
-                double ofertaPrecio = cursor.getDouble(priceIndex);
+                // Llenar datos en la matriz
+                datos[rowIndex][0] = String.valueOf(idIndex);
+                datos[rowIndex][1] = nombreIndex;
+                datos[rowIndex][2] = descripcionIndex;
 
-                data.append("Oferta ID: ").append(ofertaId)
-                        .append(", Descripcion: ").append(ofertaDescripcion)
-                        .append(", Precio: ").append(ofertaPrecio).append("\n");
-
+                rowIndex++;
             } while (cursor.moveToNext());
-
-            cursor.close();
-            db.close();
-
-            tvOferta.setText(data.toString());
-        } else {
-            tvOferta.setText("No hay datos disponibles de la tabla Oferta");
         }
-        return tvOferta;
-    }
-    public TextView mostrarCentroUbicacionJoin () {
 
-        TextView tvJoin = null;
+        cursor.close();
+        db.close();
+
+        // Llamar a la función construirTablaSQL con los datos
+        return construirTablaSQL(datos);
+    }
+    public String mostrarCentroUbicacionJoin () {
+//select * from centro c join ubicacion u  on c.ubicacion=u.calle;
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT Centro.nombre, Ubicacion.calle FROM Centro INNER JOIN Ubicacion ON Centro.ubicacion = Ubicacion.calle";
-        Cursor cursor = db.rawQuery(query, null);
 
-        if (cursor.moveToFirst()) {
-            StringBuilder datos = new StringBuilder();
+        String[] campos1 = new String[]{"idCentro", "nombre", "ubicacion"};
+
+        String[] campos2 = new String[]{"calle", "ciudad","codigoPostal"};
+
+        Cursor cursor1 = db.query("centro", campos1, null, null, null, null, null);
+        String[][] datos = new String[cursor1.getCount() + 1][5];
+
+        // Cabecera de la tabla
+        datos[0][0] = "ID Centro";
+        datos[0][1] = "Nombre";
+        datos[0][2]= "Calle";
+        datos[0][3]= "Ciudad";
+        datos[0][4]= "CodigoPostal";
+        int rowIndex = 1;
+
+        if (cursor1.moveToFirst()) {
             do {
 
-                int centroNameIndex = cursor.getColumnIndex("Centro.nombre");
+                int idIndex = cursor1.getInt(0);
+                String nombreIndex = cursor1.getString(1);
+                String ubicacionIndex[] = new String[]{cursor1.getString(2)};
+                Cursor cursor2 = db.query("ubicacion", campos2, "calle=?", ubicacionIndex, null, null, null);
+                cursor2.moveToFirst();
 
-                int ubicacionDetailsIndex = cursor.getColumnIndex("Ubicacion.calle");
-                String centroName = cursor.getString(centroNameIndex);
+                String calleIndex = cursor2.getString(0);
+                String ciudadIndex = cursor2.getString(1);
+                int cpIndex = cursor2.getInt(2);
 
-                String ubicacionCalle = cursor.getString(ubicacionDetailsIndex);
-                datos.append(", Nombre centro: ").append(centroName)
-                        .append(", Ubicación: ").append(ubicacionCalle).append("\n");
+                // Llenar datos en la matriz
+                datos[rowIndex][0] = String.valueOf(idIndex);
+                datos[rowIndex][1] = nombreIndex;
+                datos[rowIndex][2] = calleIndex;
+                datos[rowIndex][3] = ciudadIndex;
+                datos[rowIndex][4] = String.valueOf(cpIndex);
 
-            } while (cursor.moveToNext());
-
-            cursor.close();
-            db.close();
-
-            tvJoin.setText(datos.toString());
-        } else {
-            tvJoin.setText("No hay datos de estas tablas");
+                rowIndex++;
+            } while (cursor1.moveToNext());
         }
-        return tvJoin;
+
+        cursor1.close();
+        db.close();
+
+        // Llamar a la función construirTablaSQL con los datos
+        return construirTablaSQL(datos);
     }
 
+    public static String construirTablaSQL(String[][] datos) {
+        StringBuilder tablaSQL = new StringBuilder();
+
+        // Obtener la longitud máxima de cada columna
+        int[] longitudesMaximas = new int[datos[0].length];
+        for (int i = 0; i < datos[0].length; i++) {
+            int longitudMaxima = datos[0][i].length(); // Iniciar con la longitud de la cabecera
+            for (String[] fila : datos) {
+                longitudMaxima = Math.max(longitudMaxima, fila[i].length());
+            }
+            longitudesMaximas[i] = longitudMaxima;
+        }
+
+        // Construimos la cabecera de la tabla
+        for (int i = 0; i < datos[0].length; i++) {
+            tablaSQL.append("| ").append(ajustarTexto(datos[0][i], longitudesMaximas[i])).append(" ");
+        }
+        tablaSQL.append("|\n");
+
+        // Construimos la línea separadora
+        for (int i = 0; i < datos[0].length; i++) {
+            tablaSQL.append("+");
+            for (int j = 0; j < longitudesMaximas[i]+1; j++) {
+                tablaSQL.append("-");
+            }
+        }
+        tablaSQL.append("+\n");
+
+        // Construimos las filas de datos
+        for (int i = 1; i < datos.length; i++) {
+            for (int j = 0; j < datos[i].length; j++) {
+                tablaSQL.append("| ").append(ajustarTexto(datos[i][j], longitudesMaximas[j])).append(" ");
+            }
+            tablaSQL.append("|\n");
+        }
+
+        return tablaSQL.toString();
+    }
+    private static String ajustarTexto(String texto, int longitudMaxima) {
+        return String.format("%-" + longitudMaxima + "s", texto);
+    }
 
 
 

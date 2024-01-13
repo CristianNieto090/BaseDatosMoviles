@@ -28,21 +28,26 @@ public class Seleccion_mostrar extends AppCompatActivity {
 
     public void onUbicacionMostrar(View view) {
         BaseDatosSQLiteOpenHelper db = new BaseDatosSQLiteOpenHelper(this,null);
-        textView = db.mostrarUbicacion();
+        String datos = db.mostrarUbicacion();
+        textView.setText(datos);
+
     }
 
     public void onProductoMostrar(View view) {
         BaseDatosSQLiteOpenHelper db = new BaseDatosSQLiteOpenHelper(this,null);
-        textView = db.mostrarProducto();
+        String datos = db.mostrarProducto();
+        textView.setText(datos);
     }
 
     public void onOfertaMostrar(View view) {
        BaseDatosSQLiteOpenHelper db = new BaseDatosSQLiteOpenHelper(this,null);
-       textView = db.mostrarOferta();
+       String datos = db.mostrarOferta();
+       textView.setText(datos);
     }
 
     public void onCentroUbicacionesMostrar(View view) {
         BaseDatosSQLiteOpenHelper db = new BaseDatosSQLiteOpenHelper(this,null);
-        textView = db.mostrarCentroUbicacionJoin();
+        String datos = db.mostrarCentroUbicacionJoin();
+        textView.setText(datos);
     }
 }

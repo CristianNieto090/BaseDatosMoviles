@@ -59,7 +59,7 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:backgroundTint="#9b9b9b"
-        android:text="Añadir"
+        android:text="Borrar"
         android:textSize="15dp"
         android:onClick="onUbicacionDelete"/>
 
