@@ -360,19 +360,25 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
                 String nombreIndex = cursor1.getString(1);
                 String ubicacionIndex[] = new String[]{cursor1.getString(2)};
                 Cursor cursor2 = db.query("ubicacion", campos2, "calle=?", ubicacionIndex, null, null, null);
-                cursor2.moveToFirst();
+                if(cursor2.moveToFirst()) {
 
-                String calleIndex = cursor2.getString(0);
-                String ciudadIndex = cursor2.getString(1);
-                int cpIndex = cursor2.getInt(2);
+                    String calleIndex = cursor2.getString(0);
+                    String ciudadIndex = cursor2.getString(1);
+                    int cpIndex = cursor2.getInt(2);
 
-                // Llenar datos en la matriz
-                datos[rowIndex][0] = String.valueOf(idIndex);
-                datos[rowIndex][1] = nombreIndex;
-                datos[rowIndex][2] = calleIndex;
-                datos[rowIndex][3] = ciudadIndex;
-                datos[rowIndex][4] = String.valueOf(cpIndex);
-
+                    // Llenar datos en la matriz
+                    datos[rowIndex][0] = String.valueOf(idIndex);
+                    datos[rowIndex][1] = nombreIndex;
+                    datos[rowIndex][2] = calleIndex;
+                    datos[rowIndex][3] = ciudadIndex;
+                    datos[rowIndex][4] = String.valueOf(cpIndex);
+                }else {
+                    datos[rowIndex][0] = String.valueOf(idIndex);
+                    datos[rowIndex][1] = nombreIndex;
+                    datos[rowIndex][2] = cursor1.getString(2);
+                    datos[rowIndex][3] = "";
+                    datos[rowIndex][4] = "";
+                }
                 rowIndex++;
             } while (cursor1.moveToNext());
         }
