@@ -22,7 +22,7 @@ public class Add_producto extends AppCompatActivity {
         marcaEditText = findViewById(R.id.AddProductoMarca);
     }
 
-    public void onCentroAdd(View view) {
+    public void onProductoAdd(View view) {
         String nombre = nombreEditText.getText().toString();
         double precio = Double.parseDouble(precioEditText.getText().toString());
         String marca = marcaEditText.getText().toString();

@@ -25,22 +25,26 @@ public class Add_ubicacion extends AppCompatActivity {
     public void onUbicacionAdd(View view) {
         String calle = calleEditText.getText().toString();
         String ciudad = ciudadEditText.getText().toString();
-        int cp = Integer.parseInt(cpEditText.getText().toString());
+        int cp =0;
 
-        if (calle.isEmpty() || ciudad.isEmpty()) {
-            Toast.makeText(this, "Calle y ciudad son campos obligatorios", Toast.LENGTH_SHORT).show();
+
+        if (calle.isEmpty() || ciudad.isEmpty() || cpEditText.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Calle, ciudad y cp son campos obligatorios", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        cp = Integer.parseInt(cpEditText.getText().toString());
         if(cp <= 9999 || cp >= 99999){
             Toast.makeText(this, "El código postal debe tener 5 números y ser positivo", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        BaseDatosSQLiteOpenHelper dbHelper = new BaseDatosSQLiteOpenHelper(this, null);
-        dbHelper.insertUbicacion(calle, ciudad, cp);
+            BaseDatosSQLiteOpenHelper dbHelper = new BaseDatosSQLiteOpenHelper(this, null);
+            dbHelper.insertUbicacion(calle, ciudad, cp);
 
-        Toast.makeText(this, "Ubicacion añadida correctamente", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ubicacion añadida correctamente", Toast.LENGTH_SHORT).show();
 
-        finish();
+            finish();
     }
 
     public void onAtrasAddUbicacion(View view) {

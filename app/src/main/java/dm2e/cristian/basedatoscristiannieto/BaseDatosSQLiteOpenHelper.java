@@ -117,7 +117,7 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
 
     public boolean deleteOferta(int ofertaId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        int rowsAffected = db.delete("oferta", "ofertaId" + "=?", new String[]{String.valueOf(ofertaId)});
+        int rowsAffected = db.delete("oferta", "idOferta" + "=?", new String[]{String.valueOf(ofertaId)});
         db.close();
 
         return rowsAffected > 0;
@@ -125,7 +125,7 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
 
     public boolean deleteProducto(int productoId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        int rowsAffected = db.delete("producto", "productoId" + "=?", new String[]{String.valueOf(productoId)});
+        int rowsAffected = db.delete("producto", "idProducto" + "=?", new String[]{String.valueOf(productoId)});
         db.close();
 
         return rowsAffected > 0;
@@ -133,7 +133,7 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
 
     public boolean deleteUbicacion(int ubicacionId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        int rowsAffected = db.delete("ubicacion", "ubicacionId" + "=?", new String[]{String.valueOf(ubicacionId)});
+        int rowsAffected = db.delete("ubicacion", "idUbicacion" + "=?", new String[]{String.valueOf(ubicacionId)});
         db.close();
 
         return rowsAffected > 0;
@@ -146,7 +146,7 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("descripcion", nuevaDescripcion);
 
-        int rowsAffected = db.update("oferta", values, "descripcion" + "=?", new String[]{String.valueOf(ofertaId)});
+        int rowsAffected = db.update("oferta", values, "idOferta" + "=?", new String[]{String.valueOf(ofertaId)});
         db.close();
 
         return rowsAffected > 0;
@@ -158,7 +158,7 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("marca", nuevoMarca);
 
-        int rowsAffected = db.update("producto", values, "marca" + "=?", new String[]{String.valueOf(productId)});
+        int rowsAffected = db.update("producto", values, "idProducto" + "=?", new String[]{String.valueOf(productId)});
         db.close();
 
         return rowsAffected > 0;
@@ -168,9 +168,9 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("centro", nuevoNombre);
+        values.put("nombre", nuevoNombre);
 
-        int rowsAffected = db.update("centro", values, "nombre" + "=?", new String[]{String.valueOf(centroId)});
+        int rowsAffected = db.update("centro", values, "idCentro" + "=?", new String[]{String.valueOf(centroId)});
         db.close();
 
         return rowsAffected > 0;
@@ -180,9 +180,9 @@ public class BaseDatosSQLiteOpenHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("producto", nuevoPrecio);
+        values.put("precio", nuevoPrecio);
 
-        int rowsAffected = db.update("producto", values, "productoId" + "=?", new String[]{String.valueOf(productId)});
+        int rowsAffected = db.update("producto", values, "idProducto" + "=?", new String[]{String.valueOf(productId)});
         db.close();
 
         return rowsAffected > 0;

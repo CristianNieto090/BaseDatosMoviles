@@ -15,9 +15,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Abrimos la base de datos en modo escritura
         BaseDatosSQLiteOpenHelper baseDatos = new BaseDatosSQLiteOpenHelper(this,  null);
-        SQLiteDatabase db = baseDatos.getWritableDatabase();
+     //   SQLiteDatabase db = baseDatos.getWritableDatabase();
         //Si hemos abierto correctamente la base de datos
-        if(db != null) {
+       /* if(db != null) {
             //Inserto 1 ejemplo por tabla
             db.execSQL("INSERT INTO producto (nombre, precio, marca) " +
                     "VALUES('Cerveza', 3, 'Mahou' )");
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             db.execSQL("INSERT INTO centro (nombre, ubicacion, max_aforo) " +
                     "VALUES('Entrecañas', 'Padre Claret, 1', 500 )");
         }
-        db.close();
+        db.close();*/
     }
 
     public void onBorrar(View view) {
